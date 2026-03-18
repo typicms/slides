@@ -20,11 +20,11 @@ final class ApiController extends BaseApiController
     {
         $query = Slide::query()->selectFields();
         $data = QueryBuilder::for($query)
-            ->allowedSorts(['status_translated', 'position', 'body_translated'])
-            ->allowedFilters([
+            ->allowedSorts('status_translated', 'position', 'body_translated')
+            ->allowedFilters(
                 AllowedFilter::custom('body', new FilterOr()),
-            ])
-            ->allowedIncludes(['image'])
+            )
+            ->allowedIncludes('image')
             ->paginate($request->integer('per_page'));
 
         $data->setCollection(collect($data->items())->map(function ($item) {
