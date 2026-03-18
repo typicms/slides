@@ -77,15 +77,7 @@ class Slide extends Model implements Sortable
 
     public function slideLink(): string
     {
-        if ($this->website !== null) {
-            return $this->website;
-        }
-
-        if ($this->page !== null) {
-            return $this->page->url();
-        }
-
-        return '';
+        return $this->website ?? $this->page?->url() ?? '';
     }
 
     public function presentTitle(): string
