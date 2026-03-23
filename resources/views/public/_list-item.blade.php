@@ -1,4 +1,4 @@
-<div class="slide-list-item swiper-slide" style="background-image: url({{ $slide->imageUrl(2000, 1000) }})">
+<div class="slide-list-item swiper-slide" style="background-image: url({{ imageOrDefault($slide->image, 2000, 1000) }})">
     <div class="slide-list-item-container">
         <div class="slide-list-item-content" data-swiper-parallax="-300">
             <p class="slide-list-item-text slider-text">
