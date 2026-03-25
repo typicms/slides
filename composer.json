@@ -1,6 +1,6 @@
 {
     "name": "typicms/slides",
-    "description": "",
+    "description": "A module to manage and display multilingual slideshows in TypiCMS applications.",
     "license": "MIT",
     "authors": [
         {
