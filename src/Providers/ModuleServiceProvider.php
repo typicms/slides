@@ -4,16 +4,21 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Slides\Providers;
 
+use Override;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use TypiCMS\Modules\Slides\Composers\SidebarViewComposer;
 
 class ModuleServiceProvider extends ServiceProvider
 {
-    public function boot(): void
+    #[Override]
+    public function register(): void
     {
         $this->mergeConfigFrom(__DIR__.'/../config/slides.php', 'typicms.modules.slides');
+    }
 
+    public function boot(): void
+    {
         $this->loadRoutesFrom(__DIR__.'/../routes/slides.php');
 
         $this->loadViewsFrom(__DIR__.'/../../resources/views/', 'slides');
