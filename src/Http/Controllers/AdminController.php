@@ -19,7 +19,7 @@ final class AdminController extends BaseAdminController
 
     public function create(): View
     {
-        $model = new Slide();
+        $model = new Slide;
 
         return view('slides::admin.create', ['model' => $model]);
     }
