@@ -1,10 +1,6 @@
-<div class="header">
-    <x-core::back-button :url="$model->indexUrl()" :title="__('Slides')" />
-    <x-core::title :$model :default="__('New slide')" />
-    <x-core::form-buttons :$model />
-</div>
+<x-core::header :$model :backUrl="$model->indexUrl()" :backLabel="__('Slides')" :defaultTitle="__('New slide')" />
 
-<div class="content">
+<div class="form-body">
     <x-core::form-errors />
 
     <div class="row">
