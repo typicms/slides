@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Slides\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Appends;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -42,6 +43,7 @@ use TypiCMS\Translatable\HasTranslations;
  * @property-read mixed $translations
  */
 #[Unguarded]
+#[Appends(['thumb'])]
 class Slide extends Model implements Sortable
 {
     use HasAdminUrls;
@@ -53,8 +55,6 @@ class Slide extends Model implements Sortable
     use Historable;
     use Publishable;
     use SortableTrait;
-
-    protected $appends = ['thumb'];
 
     /** @var array<string> */
     public array $translatable = [
