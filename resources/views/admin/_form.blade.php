@@ -1,4 +1,4 @@
-<x-core::header :$model :backUrl="$model->indexUrl()" :backLabel="__('Slides')" :defaultTitle="__('New slide')" />
+<x-core::header :$model :back-url="$model->indexUrl()" :back-label="__('Slides')" :default-title="__('New slide')" />
 
 <div class="form-body">
     <x-core::form-errors />
