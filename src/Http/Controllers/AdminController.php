@@ -14,19 +14,19 @@ final class AdminController extends BaseAdminController
 {
     public function index(): View
     {
-        return view('slides::admin.index');
+        return view('admin::slides.index');
     }
 
     public function create(): View
     {
         $model = new Slide;
 
-        return view('slides::admin.create', ['model' => $model]);
+        return view('admin::slides.create', ['model' => $model]);
     }
 
     public function edit(Slide $slide): View
     {
-        return view('slides::admin.edit', ['model' => $slide]);
+        return view('admin::slides.edit', ['model' => $slide]);
     }
 
     public function store(FormRequest $request): RedirectResponse

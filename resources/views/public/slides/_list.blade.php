@@ -1,6 +1,6 @@
 <div class="slide-list-wrapper swiper-wrapper">
     @foreach ($items as $slide)
-        @include('slides::public._list-item')
+        @include('public::slides._list-item')
     @endforeach
 </div>
 @if ($items->count() > 1)
