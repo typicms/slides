@@ -1,8 +1,4 @@
-@extends('admin::core.master')
-
-@section('title', __('Slides'))
-
-@section('content')
+<x-core::layouts.admin :title="__('Slides')">
     <item-list url-base="/api/slides" fields="id,image_id,position,status,body" table="slides" title="slides" include="image" :searchable="['body']" :sorting="['position']" :draggable="$can('update slides')">
         <template #top-buttons v-if="$can('create slides')">
             <x-core::create-button :url="route('admin::create-slide')" :label="__('Create slide')" />
@@ -34,4 +30,4 @@
             <td>@{{ model.body_translated }}</td>
         </template>
     </item-list>
-@endsection
+</x-core::layouts.admin>
