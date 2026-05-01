@@ -6,17 +6,12 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="row gx-3">
-                <div class="col-sm-6">
-                    {!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}
-                </div>
+                <div class="col-sm-6">{!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}</div>
             </div>
 
-            {!! BootForm::select(__('Page'), 'page_id', (new TypiCMS\Modules\Core\Models\Page())->allForSelect()) !!}
+            {!! BootForm::select(__('Page'), 'page_id', new TypiCMS\Modules\Core\Models\Page()->allForSelect()) !!}
 
-            <div class="mb-3">
-                {!! TranslatableBootForm::hidden('status')->value(0) !!}
-                {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}
-            </div>
+            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
             {!! TranslatableBootForm::textarea(__('Body'), 'body') !!}
         </div>
         <div class="col-lg-4">
