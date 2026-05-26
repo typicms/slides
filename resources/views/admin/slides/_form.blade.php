@@ -6,13 +6,15 @@
     <div class="row">
         <div class="col-lg-8">
             <div class="row gx-3">
-                <div class="col-sm-6">{!! BootForm::text(__('Website'), 'website')->type('url')->placeholder('https://') !!}</div>
+                <div class="col-sm-6"><x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" /></div>
             </div>
 
-            {!! BootForm::select(__('Page'), 'page_id', new TypiCMS\Modules\Core\Models\Page()->allForSelect()) !!}
+            <x-bootform::select :label="__('Page')" name="page_id" :options="new TypiCMS\Modules\Core\Models\Page()->allForSelect()" />
 
-            <div class="mb-3">{!! TranslatableBootForm::hidden('status')->value(0) !!} {!! TranslatableBootForm::checkbox(__('Published'), 'status') !!}</div>
-            {!! TranslatableBootForm::textarea(__('Body'), 'body') !!}
+            <div class="mb-3">
+                <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
+            </div>
+            <x-transbootform::textarea :label="__('Body')" name="body" />
         </div>
         <div class="col-lg-4">
             <div class="right-column">
