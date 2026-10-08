@@ -1,38 +1,44 @@
-.slide-list {
-    &-container {
-        position: relative;
-        overflow: hidden;
-    }
-    &-item {
-        background-size: cover;
-        background-position: center center;
+@use 'bootstrap/scss/bootstrap' as bs;
+@use '../tools' as *;
+@use 'variables' as *;
+
+@layer custom {
+    .slide-list {
         &-container {
-            @extend .container-fluid;
-            min-height: 500px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: flex-end;
-            padding: 0;
-            @include media-breakpoint-up(md) {
-                align-items: center;
-            }
+            position: relative;
+            overflow: hidden;
         }
-        &-content {
-            background-color: rgba($white, 50%);
-            padding: 2rem;
-            backdrop-filter: grayscale(1) blur(10px);
-            margin-bottom: 0;
-            @include media-breakpoint-up(md) {
-                width: 40%;
-                margin-right: 5rem;
+        &-item {
+            background-size: cover;
+            background-position: center center;
+            &-container {
+                @extend .container-fluid;
+                min-height: 500px;
+                display: flex;
+                align-items: flex-end;
+                justify-content: flex-end;
+                padding: 0;
+                @include media-breakpoint-up(md) {
+                    align-items: center;
+                }
+            }
+            &-content {
+                background-color: color-mix(in oklch, $white 50%, transparent);
+                padding: 2rem;
+                backdrop-filter: grayscale(1) blur(10px);
+                margin-bottom: 0;
+                @include media-breakpoint-up(md) {
+                    width: 40%;
+                    margin-right: 5rem;
+                }
+            }
+            &-button {
+                @extend .btn-solid;
+                @extend .theme-primary;
+                @extend .btn-sm;
             }
         }
         &-button {
-            @extend .btn;
-            @extend .btn-primary;
-            @extend .btn-sm;
         }
-    }
-    &-button {
     }
 }
