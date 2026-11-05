@@ -6,10 +6,16 @@
     <div class="row">
         <div class="lg:col-8">
             <div class="row gx-5">
-                <div class="sm:col-6"><x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" /></div>
+                <div class="sm:col-6">
+                    <x-bootform::text :label="__('Website')" name="website" type="url" placeholder="https://" />
+                </div>
             </div>
 
-            <x-bootform::select :label="__('Page')" name="page_id" :options="new TypiCMS\Modules\Core\Models\Page()->allForSelect()" />
+            <x-bootform::select
+                :label="__('Page')"
+                name="page_id"
+                :options="new TypiCMS\Modules\Core\Models\Page()->allForSelect()"
+            />
 
             <div class="mb-5">
                 <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
