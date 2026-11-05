@@ -1,4 +1,4 @@
-<div class="slide-list-container swiper-container {{ $items->count() > 1 ? 'slide-list-swiper' : '' }}">
+<div class="slide-list-container swiper {{ $items->count() > 1 ? 'slide-list-swiper' : '' }}">
     @include('public::slides._list')
     @if ($items->count() > 1)
         <div class="slide-list-pagination swiper-pagination"></div>
