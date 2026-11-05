@@ -15,7 +15,7 @@ use TypiCMS\Modules\Slides\Models\Slide;
 
 final class ApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, Slide> */
     public function index(Request $request): LengthAwarePaginator
     {
         $query = Slide::query()->selectFields();
