@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TypiCMS\Modules\Slides\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -15,7 +16,7 @@ use TypiCMS\Modules\Slides\Models\Slide;
 
 final class ApiController extends BaseApiController
 {
-    /** @return LengthAwarePaginator<int, mixed> */
+    /** @return LengthAwarePaginator<int, Slide> */
     public function index(Request $request): LengthAwarePaginator
     {
         $query = Slide::query()->selectFields();
@@ -27,9 +28,10 @@ final class ApiController extends BaseApiController
             ->allowedIncludes('image')
             ->paginate($request->integer('per_page'));
 
-        $data->setCollection(collect($data->items())->map(function ($item) {
-            if (property_exists($item, 'body_translated')) {
-                $item->body_translated = mb_trim(strip_tags(html_entity_decode((string) $item->body_translated)), '"');
+        $data->setCollection(collect($data->items())->map(function (Model $item): Model {
+            $body = $item->getAttribute('body_translated');
+            if (is_string($body)) {
+                $item->setAttribute('body_translated', mb_trim(strip_tags(html_entity_decode($body)), '"'));
             }
 
             return $item;
@@ -42,8 +44,12 @@ final class ApiController extends BaseApiController
     {
         foreach ($request->only('status', 'position') as $key => $content) {
             if ($slide->isTranslatableAttribute($key)) {
+                if (! is_array($content)) {
+                    continue;
+                }
+
                 foreach ($content as $lang => $value) {
-                    $slide->setTranslation($key, $lang, $value);
+                    $slide->setTranslation($key, (string) $lang, $value);
                 }
             } else {
                 $slide->{$key} = $content;
