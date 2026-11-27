@@ -36,7 +36,7 @@ Route::middleware('admin')
 /*
  * API routes
  */
-Route::middleware(['api', 'auth:api'])->prefix('api')->group(function (Router $router): void {
+Route::middleware(['web', 'api', 'auth'])->prefix('api')->group(function (Router $router): void {
     $router->get('slides', [ApiController::class, 'index'])->middleware('can:read slides');
     $router->patch('slides/{slide}', [ApiController::class, 'updatePartial'])->middleware('can:update slides');
     $router->delete('slides/{slide}', [ApiController::class, 'destroy'])->middleware('can:delete slides');

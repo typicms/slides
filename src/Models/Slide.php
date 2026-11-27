@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TypiCMS\Modules\Slides\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Appends;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\Unguarded;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
@@ -16,6 +17,7 @@ use Spatie\EloquentSortable\SortableTrait;
 use TypiCMS\Modules\Core\Models\File;
 use TypiCMS\Modules\Core\Models\History;
 use TypiCMS\Modules\Core\Models\Page;
+use TypiCMS\Modules\Core\Observers\TipTapHTMLObserver;
 use TypiCMS\Modules\Core\Traits\HasAdminUrls;
 use TypiCMS\Modules\Core\Traits\HasConfigurableOrder;
 use TypiCMS\Modules\Core\Traits\HasContentPresenter;
@@ -42,6 +44,7 @@ use TypiCMS\Translatable\HasTranslations;
  * @property-read mixed $thumb
  * @property-read mixed $translations
  */
+#[ObservedBy([TipTapHTMLObserver::class])]
 #[Unguarded]
 #[Appends(['thumb'])]
 class Slide extends Model implements Sortable
@@ -59,6 +62,11 @@ class Slide extends Model implements Sortable
     /** @var array<string> */
     public array $translatable = [
         'status',
+        'body',
+    ];
+
+    /** @var array<string> */
+    public array $tipTapContent = [
         'body',
     ];
 

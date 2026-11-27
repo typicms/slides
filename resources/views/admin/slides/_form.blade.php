@@ -20,7 +20,7 @@
             <div class="mb-5">
                 <x-transbootform::checkbox :label="__('Published')" name="status" :unchecked-value="0" />
             </div>
-            <x-transbootform::textarea :label="__('Body')" name="body" />
+            <x-core::tiptap-editors :model="$model" name="body" :label="__('Body')" />
         </div>
         <div class="lg:col-4">
             <div class="right-column">

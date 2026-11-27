@@ -23,6 +23,9 @@
             "providers": [
                 "TypiCMS\\Modules\\Slides\\Providers\\ModuleServiceProvider"
             ]
+        },
+        "branch-alias": {
+            "dev-main": "18.x-dev"
         }
     }
 }
