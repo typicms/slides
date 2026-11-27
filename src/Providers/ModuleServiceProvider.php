@@ -22,15 +22,7 @@ class ModuleServiceProvider extends ServiceProvider
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/slides.php');
 
-        $this->loadViewsFrom([
-            resource_path('views/admin'),
-            __DIR__.'/../../resources/views/admin',
-        ], 'admin');
-
-        $this->loadViewsFrom([
-            resource_path('views/public'),
-            __DIR__.'/../../resources/views/public',
-        ], 'public');
+        View::addLocation(__DIR__.'/../../resources/views');
 
         $this->publishes([
             __DIR__.'/../../database/migrations/create_slides_table.php.stub' => getMigrationFileName(
@@ -45,12 +37,12 @@ class ModuleServiceProvider extends ServiceProvider
         ], ['typicms-views', 'typicms-public-views', 'typicms-public-slides-views']);
         $this->publishes([__DIR__.'/../../resources/scss' => resource_path('scss')], 'typicms-resources');
 
-        View::composer('admin::core._sidebar', SidebarViewComposer::class);
+        View::composer('admin.core._sidebar', SidebarViewComposer::class);
 
         /*
          * Add the page in the view.
          */
-        View::composer('public::slides.*', function (ViewInstance $view): void {
+        View::composer('public.slides.*', function (ViewInstance $view): void {
             $view->with('page', getPageLinkedToModule('slides'));
         });
     }
